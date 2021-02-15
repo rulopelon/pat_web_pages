@@ -3,10 +3,23 @@
         
         <head>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-            <link href="C:\Users\gonza\Documents\GitHub\pat_web_pages\Practica2\estilo.css" rel="stylesheet">
             <style>
                 body{
                   background-color: rgb(205, 204, 212);
+                }
+                .card{
+                  background-color: rgb(205, 204, 212);
+
+                }
+                .mt-0 {
+                  margin-top: 5% !important;
+                  margin-bottom: 5% !important;
+                }
+                .botones{
+                  margin-left: 30%;
+                }
+                .cartas{
+                  margin-left: 10%;
                 }
                
                 
@@ -26,10 +39,10 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                      <a class="nav-link active" aria-current="page" href="/index.html">Inicio</a>
                       </li>
                       <li class="nav-item">
-                      <a class="nav-link active" href="#">Contacto</a>
+                      <a class="nav-link active" href="/contacto.html">Contacto</a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link active" href="#">Donde estamos</a>
@@ -43,21 +56,9 @@
               </div>
           </nav>
           <div class="container-fluid ">
-            <div class="row justify-content-between">
-              <div class= "col panel-izquierdo">
-                
-                <ul class="list-group">
-                  <li type="button" class="list-group-item btn btn-outline-secondary">Robot 1</li>
-                  <li type="button" class="list-group-item btn btn-outline-secondary">Robot 2</li>
-                  <li type="button" class="list-group-item btn btn-outline-secondary">Robot 3</li>
-                  <li type="button" class="list-group-item btn btn-outline-secondary">Robot 4</li>
-                  <li type="button" class="list-group-item btn btn-outline-secondary">Robot 5</li>
-                </ul>
-                
-              </div>
-              <div class = "col-sm-9">
+              
                   <div class = "row">
-                    <p class="lead">Bienvenido a la pagina web lider en robots, navegue poir los distintos menus para poder ver los diferentes robots que estamos desarrollando</p>
+                    <p class="lead display-6 mt-0">Bienvenido a la pagina web lider en robots, navegue por los distintos menus para poder ver los diferentes robots que estamos desarrollando</p>
                   </div>
                   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -84,6 +85,56 @@
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
+                  </div>
+                  <div class = row  align-center>
+                    <h1 class = "display-6 text-center gap-3 mt-0" >Principales competiciones de robots</h1>
+                  </div>
+                  
+                  <div class = "row flex no-wrap justify-content-between align-items-center cartas">
+                    <div class="col">
+                      <div class="card" style="width: 18rem;">
+                        <img src="https://www.robocup.org/assets/frontend/robocup_logo_no_bg-824a0338f57b2804e73903286f5e9eda1dc1b51c1070a900f33b7ea1d9efa3e4.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Robocup</h5>
+                          <p class="card-text">es el campeonato internacional que aglutina diferentes categorías y cuya fase final se celebra cada año en una ciudad distinta</p>
+                          <a href="https://www.robocup.org/" class="btn btn-primary">Link</a>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    <div class="col">
+                      <div class="card" style="width: 18rem;">
+                        <img src="https://lnrc.es/imagenes/noticias/2019/870x470/logo.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Liga Nacional robotica</h5>
+                          <p class="card-text">Liga nacional con distintas categorias de robots</p>
+                          <a href="https://lnrc.es/" class="btn btn-primary">Link</a>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                    <div class="card" style="width: 18rem;">
+                      <img src="https://s3.eu-central-1.amazonaws.com/robotica-es/uploads/items/ITEM_6967_FOTOPROD.png" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">STEAM CUP</h5>
+                        <p class="card-text">Es una competición online que ofrece una oportunidad a niños, niñas y jóvenes de construir sobre las bases de la robótica,</p>
+                        <a href="https://www.ro-botica.com/tienda/Competicion-concursos-robots/STEAM-CUP/" class="btn btn-primary">Link</a>
+                      </div>
+                    </div>
+                  </div>
+          
+                  
+                  <div class = "row align-content-center botones">
+                    <div class="btn-group-lg" role="group" aria-label="Basic radio toggle button group">
+                      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                      <label class="btn btn-outline-primary" for="btnradio1">Robot 1</label>
+                    
+                      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradio2">Robot 2</label>
+                    
+                      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradio3">Robot 3</label>
+                    </div>
                   </div>
                     <div  class = "row-3">
                       <table class= "table  table-sm table-striped  table-bordered  align-middle">
@@ -114,10 +165,7 @@
                       </table>
       
                     </div>
-                
-              </div>
-              
-            </div>  
+                 
           </div>
         </nav>
             <footer>

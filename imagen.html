@@ -13,9 +13,8 @@
     </head>
     <body>
         <div>
-            <p>Hola</p>
-            <div class="row row-cols-1 row-cols-md-2 g-4" id = "contenedorCartas">
-                
+            <div class="card-group" id="contenedorCartas">
+                   
             </div>
             
             <footer>
@@ -26,6 +25,59 @@
        
 
     </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script>
+        let params = new URLSearchParams(document.location.search.substring(1));
+        var robot =params.get("robot");
+        var sol = params.get("sol");
+
+        //se crea la consulta a la api de la nasa
+        console.log('https://api.nasa.gov/mars-photos/api/v1/rovers/'+robot+'/photos?sol='+sol+'page=10&api_key=DEMO_KEY');
+        fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/'+robot+'/photos?sol='+sol+'page=10&api_key=nnMWwmatd4aLNRLpYgTg2BILel2Fu43PBaV78BIm',{ 
+        method:'GET'
+
+                })
+            
+            .then(respuesta =>{
+                //se crean las fotos
+                return respuesta.json()
+            })
+            .then(r=>{
+                // se coge 
+                
+                resultados = r.photos;
+                actualizarCartas();
+            })
+            .catch(e => {
+                console.error("Error " + e)
+            })
+            
+          function actualizarCartas(){
+            let marcoCartas = document.getElementById("contenedorCartas");
+
+            let html = '';
+            resultados.forEach(function(foto){
+              console.log(foto.img_src)
+
+              if(Math.floor((Math.random() * 2) + 1) ==2){
+                html +=  '<div class="col">'
+                  +'<div class="card " style="width: 18rem;">'
+                    +'<img src=\"'+foto.img_src +'\"  class="card-img-top" alt="...">'
+                    +'<div class="card-body">'
+                      +'<h5 class="card-title">'+foto.rover.name + foto.id+'</h5>'
+                      +'<p class="card-text">Robot aterrizado en Marte el dia'+foto.rover.landing_date+', foto tomada el dia '+foto.earth_date+'</p>'
+                    +'</div>'
+                  +'</div>'
+                +'</div>';
+              
+              }
+            })
+            marcoCartas.innerHTML = html;
+            console.log('cartas actualizadas');
+        }
+
+            
+            
+            
+    </script>
 
 </html>

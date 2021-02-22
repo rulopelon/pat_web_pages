@@ -126,15 +126,18 @@
                   
                   <div class = "row align-content-center botones">
                     <div class="btn-group-lg" role="group" aria-label="Basic radio toggle button group">
-                      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                      <label class="btn btn-outline-primary" for="btnradio1">Robot 1</label>
+                      <input type="radio" class="btn-check " name="btnradio" id="btnradio1" autocomplete="off" checked>
+                      <label class="btn btn-outline-primary BusquedaFoto " for="btnradio1">Curiosity</label>
                     
-                      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                      <label class="btn btn-outline-primary" for="btnradio2">Robot 2</label>
+                      <input type="radio" class="btn-check " name="btnradio" id="btnradio2" autocomplete="off">
+                      <label class="btn btn-outline-primary BusquedaFoto" for="btnradio2">Opportunity</label>
                     
-                      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                      <label class="btn btn-outline-primary" for="btnradio3">Robot 3</label>
+                      <input type="radio" class="btn-check " name="btnradio" id="btnradio3" autocomplete="off">
+                      <label class="btn btn-outline-primary BusquedaFoto" for="btnradio3">Spirit</label>
                     </div>
+                  </div>
+                  <div class="card-group" id="contenedorCartas">
+                   
                   </div>
                     
                  
@@ -145,7 +148,134 @@
             </footer>
         </body>
         
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+          <script >
+            //src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+
+            var resultados,newWin;
+            var botonesBusquedaFoto = document.getElementsByClassName('BusquedaFoto');
+            //se añade el listener a los tres elementos
+           console.log(botonesBusquedaFoto.length)
+            
+            botonesBusquedaFoto[0].addEventListener("click",function(){
+              let robot = "curiosity";
+              let sol = getSol();
+              let solGenerado = sol.next().value;
+              console.log(solGenerado);
+              //se crea la consulta a la api de la nasa
+              console.log("https://api.nasa.gov/mars-photos/api/v1/rovers/"+robot+"/photos?sol="+solGenerado+"&api_key=DEMO_KEY");
+              fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+solGenerado+"page=10&api_key=DEMO_KEY",{ 
+              method:'GET'
+
+              })
+            
+            .then(respuesta =>{
+              //se crean las fotos
+              return respuesta.json()
+            })
+            .then(r=>{
+              // se coge 
+              
+              resultados = r.photos;
+              actualizarCartas();
+            })
+            .catch(e => {
+              console.error("Error " + e)
+            })
+          })
+         
+          botonesBusquedaFoto[2].addEventListener("click",function(){
+              let robot = "spirit";
+              let sol = getSol();
+              let solGenerado = sol.next().value;
+              console.log(solGenerado);
+              //se crea la consulta a la api de la nasa
+              console.log("https://api.nasa.gov/mars-photos/api/v1/rovers/"+robot+"/photos?sol="+solGenerado+"&api_key=DEMO_KEY");
+              fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+solGenerado+"page=10&api_key=DEMO_KEY",{ 
+              method:'GET'
+
+              })
+            
+            .then(respuesta =>{
+              //se crean las fotos
+              return respuesta.json()
+            })
+            .then(r=>{
+              // se coge 
+              
+              resultados = r.photos;
+              actualizarCartas();
+            })
+            .catch(e => {
+              console.error("Error " + e)
+            })
+          })
+         
+          botonesBusquedaFoto[1].addEventListener("click",function(){
+              let robot = "opportunity";
+              let sol = getSol();
+              let solGenerado = sol.next().value;
+              console.log(solGenerado);
+              //se crea la consulta a la api de la nasa
+              console.log("https://api.nasa.gov/mars-photos/api/v1/rovers/"+robot+"/photos?sol="+solGenerado+"&api_key=DEMO_KEY");
+              fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+solGenerado+"&page=10&api_key=DEMO_KEY",{ 
+              method:'GET'
+
+              })
+            
+            .then(respuesta =>{
+              //se crean las fotos
+              return respuesta.json()
+            })
+            .then(r=>{
+              // se coge 
+              
+              resultados = r.photos;
+              actualizarCartas();
+            })
+            .catch(e => {
+              console.error("Error " + e)
+            })
+          })
+          function actualizarCartas(){
+            let marcoCartas = document.getElementById("contenedorCartas");
+            console.log(marcoCartas)
+
+            let html = '';
+            resultados.forEach(function(foto){
+              if(Math.floor((Math.random() * 2) + 1) ==2){
+                html +=  '<div class="col">'
+                  +'<div class="card " style="width: 18rem;">'
+                    +'<img src=\"'+foto.img_src +' '+ foto.id+'\" class="card-img-top" alt="...">'
+                    +'<div class="card-body">'
+                      +'<h5 class="card-title">'+foto.rover.name +'</h5>'
+                      +'<p class="card-text">Robot aterrizado en Marte el dia'+foto.rover.landing_date+', foto tomada el dia '+foto.earth_date+'</p>'
+                    +'</div>'
+                  +'</div>'
+                +'</div>';
+              
+              }
+            })
+
+            
+            
+            marcoCartas.innerHTML = html;
+            console.log('cartas actualizadas');
+          }
+          var botonCerrar = document.getElementById("botonCerrar");
+          botonCerrar.addEventListener("click",function(){
+            let marcoCartas = document.getElementById("contenedorCartas");
+            let html = '';
+            marcoCartas.innerHTML = html;
+          })
+          
+
+            function* getSol(){
+             
+              
+              yield Math.floor((Math.random() * 1000) + 1);
+
+            }
+          </script>
         
 
         

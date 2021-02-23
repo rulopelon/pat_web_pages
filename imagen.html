@@ -6,13 +6,23 @@
         body{
             background-color: rgb(205, 204, 212);
         }
+        #boton-volver{
+          margin-top: 1%;
+          margin-bottom: 1%;
+          margin-left: 45%;
+        }
         
             
         </style>
         
     </head>
     <body>
-        <div>
+        <div class= "container-fluid">
+            <div class="btn-group-lg" role="group" aria-label="Basic radio toggle button group">
+              <input type="radio" class="btn-check " name="btnradio" id="btnradio1" autocomplete="off" checked>
+              <a class="btn btn-outline-primary " id = "boton-volver"for="btnradio1">Volver</a>
+            </div>
+
             <div class="card-group" id="contenedorCartas">
                    
             </div>
@@ -74,7 +84,8 @@
             marcoCartas.innerHTML = html;
             console.log('cartas actualizadas');
         }
-        
+        var botonVuelta = document.getElementById('boton-volver');
+        botonVuelta.setAttribute('href','./index.html');
 
             
             

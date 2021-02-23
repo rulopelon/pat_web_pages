@@ -66,7 +66,7 @@
                       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" id = "myCarousel">
                       <div class="carousel-item active">
                         <img src="http://lpsingenieria.com/wp-content/uploads/2017/06/robots-humanos-leyes-1170x810.jpg" height =50% class="d-block w-50 rounded mx-auto d-block" alt="...">
                       </div>
@@ -90,7 +90,7 @@
                     <h1 class = "display-6 text-center gap-3 mt-0" >Principales competiciones de robots en las que participamos</h1>
                   </div>
                   
-                  <div class = "row flex no-wrap justify-content-between align-items-center cartas">
+                  <div class = " card-group row cartas">
                     <div class="col">
                       <div class="card" style="width: 18rem;">
                         <img src="https://www.robocup.org/assets/frontend/robocup_logo_no_bg-824a0338f57b2804e73903286f5e9eda1dc1b51c1070a900f33b7ea1d9efa3e4.png" class="card-img-top" alt="...">
@@ -147,27 +147,37 @@
               <p>  El texto está disponible bajo la <a rel="license" href="//es.wikipedia.org/wiki/Wikipedia:Texto_de_la_Licencia_Creative_Commons_Atribuci%C3%B3n-CompartirIgual_3.0_Unported">Licencia Creative Commons Atribución Compartir Igual 3.0</a><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/" style="display:none;"></a></p>
             </footer>
         </body>
-        
-          <script >
-            //src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+        <script src ="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+        </script>  
+        <script >
+          //src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
 
-            var solGenerator = getSol();
-            var sol= solGenerator.next().value;
-            var botonesBusquedaFoto = document.getElementsByClassName('BusquedaFoto');
-            //se añade el listener a los tres elementos
+          var solGenerator = getSol();
+          var sol= solGenerator.next().value;
+          var botonesBusquedaFoto = document.getElementsByClassName('BusquedaFoto');
+          //se añade el listener a los tres elementos
 
-            botonesBusquedaFoto[0].setAttribute('href',encodeURI(`./imagen.html?robot=curiosity&sol=${sol}`));
-            botonesBusquedaFoto[1].setAttribute('href',encodeURI(`./imagen.html?robot=opportunity&sol=${sol}`));
-            botonesBusquedaFoto[2].setAttribute('href',encodeURI(`./imagen.html?robot=spirit&sol=${sol}`));
+          botonesBusquedaFoto[0].setAttribute('href',encodeURI(`./imagen.html?robot=curiosity&sol=${sol}`));
+          botonesBusquedaFoto[1].setAttribute('href',encodeURI(`./imagen.html?robot=opportunity&sol=${sol}`));
+          botonesBusquedaFoto[2].setAttribute('href',encodeURI(`./imagen.html?robot=spirit&sol=${sol}`));
 
 
-            function* getSol(){
-             
-              
-              yield Math.floor((Math.random() * 1000) + 1);
+          function* getSol(){
+            
+            
+            yield Math.floor((Math.random() * 1000) + 1);
 
-            }
-          </script>
+          }
+          var myCarouselEl = document.getElementById('myCarousel')
+          var carousel = bootstrap.Carousel.getInstance(myCarouselEl) // Retrieve a Carousel instance
+
+          myCarouselEl.addEventListener('slid.bs.carousel', function (event) {
+            carousel.to('2') // Will slide to the slide 2 as soon as the transition to slide 1 is finished
+          })
+
+          carousel.to('1') // Will start sliding to the slide 1 and returns to the caller
+          carousel.to('2') // !! Will be ignored, as the transition to the slide 1 is not finished !!
+        </script>
         
 
         
